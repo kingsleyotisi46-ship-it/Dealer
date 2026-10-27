@@ -16,9 +16,9 @@ python manage.py runserver
 
 Visit `/` and `/admin/`. Configure `DepositOption` and `PaymentWallet` records in the admin before testing deposits.
 
-## Deploy
+## Deploy with Neon PostgreSQL
 
-This repository includes a Render Blueprint (`render.yaml`). In Render, choose **New → Blueprint**, connect this repository, and apply the blueprint to create the web service and database. Then create a Django superuser using the Render service shell. A repository upload alone is not a live deployment.
+This repository's `render.yaml` configures only a Render web service; it does **not** create a Render database. Create a PostgreSQL project in Neon, copy its pooled connection string, then import this repository in Render using **New → Blueprint**. When prompted, set the `DATABASE_URL` environment variable to your Neon connection string. Keep it private and never commit it to GitHub. Configure `SECRET_KEY`, `ALLOWED_HOSTS`, `CSRF_TRUSTED_ORIGINS`, and production email settings, then run migrations and create a Django superuser through the service shell.
 
 ## Before real use
 
